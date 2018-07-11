@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/youtube-recomm-service.iml" filepath="$PROJECT_DIR$/youtube-recomm-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/yt-common-dependencies/yt-common-dependencies.iml" filepath="$PROJECT_DIR$/yt-common-dependencies/yt-common-dependencies.iml" />
+      <module fileurl="file://$PROJECT_DIR$/yt-common-parent/yt-common-parent.iml" filepath="$PROJECT_DIR$/yt-common-parent/yt-common-parent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/yt-scraper/yt-scraper.iml" filepath="$PROJECT_DIR$/yt-scraper/yt-scraper.iml" />
+    </modules>
+  </component>
+</project>
