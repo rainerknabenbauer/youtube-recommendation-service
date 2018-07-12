@@ -1,6 +1,5 @@
 package de.basedefender.youtube;
 
-
 import com.google.api.client.http.HttpRequest;
 import com.google.api.client.http.HttpRequestInitializer;
 import com.google.api.client.http.javanet.NetHttpTransport;
@@ -18,49 +17,28 @@ import java.io.InputStreamReader;
 import java.util.Iterator;
 import java.util.List;
 
-public class YoutubeApplication {
+public class FindChannelIDApplication {
 
     private YouTube youTube;
     private YouTubeRequest youTubeRequest;
     private static final String apiKey = "AIzaSyDbVzRmlKdIEhwE7_FoxoRas_gp3p6cbpE";
     private static final Long NUMBER_OF_VIDEOS_RETURNED = 10L;
 
-    public YoutubeApplication() throws Exception {
+    private FindChannelIDApplication() throws Exception {
+
         this.youTube = new YouTube.Builder(new NetHttpTransport(), new JacksonFactory(), new HttpRequestInitializer() {
             public void initialize(HttpRequest request) throws IOException {
                 // no-op override
             }
         }).setApplicationName("basedefender-yt-scraper").build();
 
-        String queryTerm = getInputQuery();
-
-        // Define the API request for retrieving search results.
-        YouTube.Search.List search = this.youTube.search().list("id,snippet");
-
-        // Set your developer key from the {{ Google Cloud Console }} for
-        // non-authenticated requests. See:
-        // {{ https://cloud.google.com/console }}
-        search.setKey(apiKey);
-        search.setQ(queryTerm);
-
-        // Restrict the search results to only include videos. See:
-        // https://developers.google.com/youtube/v3/docs/search/list#type
-        search.setType("video");
-
-        // To increase efficiency, only retrieve the fields that the
-        // application uses.
-        //search.setFields("items(id/kind,id/videoId,snippet/title,snippet/thumbnails/default/url)");  //TODO Use Filter
-        search.setMaxResults(NUMBER_OF_VIDEOS_RETURNED);
-
-        // Call the API and print results.
-        SearchListResponse searchResponse = search.execute();
+        SearchListResponse searchResponse = search(getInputQuery(), SearchType.VIDEO);
 
         List<SearchResult> searchResultList = searchResponse.getItems();
         if (searchResultList != null) {
-            prettyPrint(searchResultList.iterator(), queryTerm);
+            prettyPrint(searchResultList.iterator());
         }
     }
-
 
     /*
      * Prints out all results in the Iterator. For each result, print the
@@ -70,11 +48,12 @@ public class YoutubeApplication {
      *
      * @param query Search query (String)
      */
-    private static void prettyPrint(Iterator<SearchResult> iteratorSearchResults, String query) {
+    @SuppressWarnings("Duplicates")
+    private void prettyPrint(Iterator<SearchResult> iteratorSearchResults) throws Exception {
 
         System.out.println("\n=============================================================");
         System.out.println(
-                "   First " + NUMBER_OF_VIDEOS_RETURNED + " videos for search on \"" + query + "\".");
+                "   First " + NUMBER_OF_VIDEOS_RETURNED + " videos for search.");
         System.out.println("=============================================================\n");
 
         if (!iteratorSearchResults.hasNext()) {
@@ -85,8 +64,8 @@ public class YoutubeApplication {
 
             SearchResult singleVideo = iteratorSearchResults.next();
 
-            String channelName = singleVideo.getSnippet().getChannelId();
-            // String channelName = singleVideo.getSnippet().getChannelTitle();   null
+            String channelId = singleVideo.getSnippet().getChannelId();
+            String channelTitle = singleVideo.getSnippet().getChannelTitle();
             // String channelName = singleVideo.getSnippet().getDescription();   null
             // String channelName = singleVideo.getKind();
 
@@ -96,36 +75,86 @@ public class YoutubeApplication {
             // Confirm that the result represents a video. Otherwise, the
             // item will not contain a video ID.
             if (rId.getKind().equals("youtube#video")) {
-                Thumbnail thumbnail = singleVideo.getSnippet().getThumbnails().getDefault();
 
-                System.out.println(" Video Id" + rId.getVideoId());
                 System.out.println(" Title: " + singleVideo.getSnippet().getTitle());
-                System.out.println(" Channel name: "+channelName);
+                System.out.println(" Channel name: "+channelId);
+                System.out.println(" Channel title: "+channelTitle);
+
                 System.out.println("\n-------------------------------------------------------------\n");
+
+                getAllVideosFromChannel(channelId);
             }
         }
+    }
+
+    private SearchListResponse search(String queryTerm, SearchType searchType) throws Exception {
+
+        // Define the API request for retrieving search results.
+        YouTube.Search.List search = this.youTube.search().list("id,snippet");
+
+        // Set your developer key from the {{ Google Cloud Console }} for
+        // non-authenticated requests. See:
+        // {{ https://cloud.google.com/console }}
+        search.setKey(apiKey);
+        if(searchType.equals(SearchType.CHANNEL)) {
+            search.setChannelId(queryTerm);
+        } else {
+            search.setQ(queryTerm);
+        }
+
+        // Restrict the search results to only include videos. See:
+        // https://developers.google.com/youtube/v3/docs/search/list#type
+        search.setType(SearchType.VIDEO.toString());
+
+        // To increase efficiency, only retrieve the fields that the
+        // application uses.
+        //search.setFields("items(id/kind,id/videoId,snippet/title,snippet/thumbnails/default/url)");  //TODO Use Filter
+        search.setMaxResults(NUMBER_OF_VIDEOS_RETURNED);
+
+        // Call the API and print results.
+        return search.execute();
+
+    }
+
+    private void getAllVideosFromChannel(String channelId) throws Exception {
+
+        SearchListResponse searchResponse = search(channelId, SearchType.CHANNEL);
+
+        List<SearchResult> searchResultList = searchResponse.getItems();
+        if (searchResultList != null) {
+            printVideosFromChannel(searchResultList.iterator());
+        }
+    }
+
+    private void printVideosFromChannel(Iterator<SearchResult> iteratorSearchResults) {
+           while(iteratorSearchResults.hasNext()) {
+               SearchResult channelVideos = iteratorSearchResults.next();
+
+               //TODO order by view count
+               System.out.println("getVideosFromChannel: "+channelVideos.getSnippet().getTitle());
+           }
     }
 
     /*
      * Prompt the user to enter a query term and return the user-specified term.
      */
-    private static String getInputQuery() throws IOException {
+    @SuppressWarnings("Duplicates")
+    private String getInputQuery() throws IOException {
 
         String inputQuery = "";
 
-        System.out.print("Please enter a search term: ");
+        System.out.print("Search for video title: ");
         BufferedReader bReader = new BufferedReader(new InputStreamReader(System.in));
         inputQuery = bReader.readLine();
 
         if (inputQuery.length() < 1) {
             // Use the string "YouTube Developers Live" as a default.
-            inputQuery = "YouTube Developers Live";
+            inputQuery = "GoTo Conference";
         }
         return inputQuery;
     }
 
-
     public static void main(String[] args) throws Exception {
-        new YoutubeApplication();
+        new FindChannelIDApplication();
     }
 }
