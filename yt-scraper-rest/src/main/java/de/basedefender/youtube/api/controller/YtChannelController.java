@@ -1,5 +1,6 @@
 package de.basedefender.youtube.api.controller;
 
+import com.google.api.services.youtube.model.SearchListResponse;
 import de.basedefender.youtube.api.service.YtChannelService;
 import io.swagger.annotations.Api;
 import lombok.RequiredArgsConstructor;
@@ -27,27 +28,27 @@ public class YtChannelController {
 
     @GetMapping({"", "/"})
     public String getChannelId() {
-        return implementationMessage;
+        return this.implementationMessage;
     }
 
     @GetMapping("/{channelId}")
-    public String getVideosByChannelId(@PathVariable String channelId) {
-        return implementationMessage;
+    public SearchListResponse getVideosByChannelId(@PathVariable String channelId) {
+        return this.ytChannelService.searchVideosByChannel(channelId);
     }
 
     @GetMapping("/likes/{channelId}")
     public String getLikesByChannelId(@PathVariable String channelId) {
-        return implementationMessage;
+        return this.implementationMessage;
     }
 
     @GetMapping("/favorites/{channelId}")
     public String getFavoritesByChannelId(@PathVariable String channelId) {
-        return implementationMessage;
+        return this.implementationMessage;
     }
 
     @GetMapping("/watchHistory/{channelId}")
     public String getWatchHistoryByChannelId(@PathVariable String channelId) {
-        return implementationMessage;
+        return this.implementationMessage;
     }
 
 

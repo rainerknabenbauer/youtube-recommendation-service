@@ -19,10 +19,13 @@
     <groupId>de.basedefender.youtube.scraper</groupId>
 
     <properties>
+
         <youtubeVersion>v3-rev204-1.23.0</youtubeVersion>
         <googleApiClient>1.23.0</googleApiClient>
         <swaggerVersion>2.7.0</swaggerVersion>
-        <lombokVersion>1.18.0</lombokVersion>
+        <!-- later version requires lombok.anyConstructor.addConstructorProperties -->
+        <lombokVersion>1.16.18</lombokVersion>
+
     </properties>
 
     <dependencies>

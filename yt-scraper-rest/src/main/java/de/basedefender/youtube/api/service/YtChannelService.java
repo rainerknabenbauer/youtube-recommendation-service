@@ -1,17 +1,24 @@
 package de.basedefender.youtube.api.service;
 
+import com.google.api.services.youtube.model.SearchListResponse;
 import de.basedefender.youtube.api.util.YtChannelUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import java.beans.ConstructorProperties;
 
 @Service
 @RequiredArgsConstructor
 public class YtChannelService {
 
-   // private final YtChannelUtils ytChannelUtils;
+    private final YtChannelUtils ytChannelUtils;
 
+    public YtChannelService(YtChannelUtils ytChannelUtils) {
+        this.ytChannelUtils = ytChannelUtils;
+    }
 
+    public SearchListResponse searchVideosByChannel(String channelId) {
 
+        //TODO Transform SearchListResponse in domain object (maybe optional signature)
+
+        return ytChannelUtils.searchVideos(channelId);
+    }
 }
