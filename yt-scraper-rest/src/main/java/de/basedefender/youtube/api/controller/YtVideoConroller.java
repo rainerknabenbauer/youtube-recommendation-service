@@ -20,7 +20,7 @@ public class YtVideoConroller {
     private final YtVideoService ytVideoService;
 
     @Value("${messages.notyetimplemented}")
-    private static String implementationMessage;
+    private String implementationMessage;
 
     @GetMapping("/comments/{videoId}")
     public String getCommentsByVideoId(@PathVariable String videoId) {

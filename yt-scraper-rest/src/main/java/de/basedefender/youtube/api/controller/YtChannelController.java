@@ -23,10 +23,10 @@ public class YtChannelController {
     private final YtChannelService ytChannelService;
 
     @Value("${messages.notyetimplemented}")
-    private static String implementationMessage;
+    private String implementationMessage;
 
-    @GetMapping("/")
-    public String getChannelId(@PathVariable String channel) {
+    @GetMapping({"", "/"})
+    public String getChannelId() {
         return implementationMessage;
     }
 
