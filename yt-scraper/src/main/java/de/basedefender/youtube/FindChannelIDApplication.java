@@ -9,7 +9,6 @@ import com.google.api.services.youtube.YouTubeRequest;
 import com.google.api.services.youtube.model.ResourceId;
 import com.google.api.services.youtube.model.SearchListResponse;
 import com.google.api.services.youtube.model.SearchResult;
-import com.google.api.services.youtube.model.Thumbnail;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -36,7 +35,7 @@ public class FindChannelIDApplication {
 
         List<SearchResult> searchResultList = searchResponse.getItems();
         if (searchResultList != null) {
-            prettyPrint(searchResultList.iterator());
+            printSearchResults(searchResultList.iterator());
         }
     }
 
@@ -49,7 +48,7 @@ public class FindChannelIDApplication {
      * @param query Search query (String)
      */
     @SuppressWarnings("Duplicates")
-    private void prettyPrint(Iterator<SearchResult> iteratorSearchResults) throws Exception {
+    private void printSearchResults(Iterator<SearchResult> iteratorSearchResults) throws Exception {
 
         System.out.println("\n=============================================================");
         System.out.println(

@@ -13,6 +13,7 @@
         <module>yt-common-dependencies</module>
         <module>yt-common-parent</module>
         <module>yt-scraper</module>
+        <module>yt-scraper-rest</module>
     </modules>
 
 
