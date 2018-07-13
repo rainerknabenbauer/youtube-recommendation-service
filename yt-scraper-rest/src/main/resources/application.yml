@@ -12,6 +12,10 @@ spring:
       enabled: false
 
 
-# Custom messages
+# Custom parameters
+youtube:
+  application:
+    name: basedefender-yt-scraper
 messages:
   notyetimplemented: Not yet implemented.
+

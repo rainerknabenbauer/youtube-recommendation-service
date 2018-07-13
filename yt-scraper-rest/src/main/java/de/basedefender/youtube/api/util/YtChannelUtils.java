@@ -7,13 +7,13 @@ import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.services.youtube.YouTube;
 import com.google.api.services.youtube.model.SearchListResponse;
 import de.basedefender.youtube.domain.domain.HttpStatusCode;
+import de.basedefender.youtube.domain.domain.SearchType;
 import de.basedefender.youtube.domain.domain.YoutubeApiResponse;
 import de.basedefender.youtube.domain.domain.impl.YoutubeApiResponseImpl;
 import de.basedefender.youtube.domain.domain.value.ApiResponseStatus;
 import de.basedefender.youtube.domain.exceptions.EnvironmentVariablesNotSetException;
-import de.basedefender.youtube.domain.exceptions.SearchExecutionException;
-import de.basedefender.youtube.domain.domain.SearchType;
-import de.basedefender.youtube.domain.exceptions.YoutubeListNotRetrievedException;
+import de.basedefender.youtube.domain.util.YoutubeApiResponseUtil;
+import org.springframework.beans.factory.annotation.Value;
 
 import java.io.IOException;
 
@@ -25,15 +25,15 @@ public class YtChannelUtils {
 
     private Long numberOfVideosReturned = 10L;
 
+    @Value("${youtube.application.name}")
+    private String applicationName;
+
     /**
      * Youtube Utils.
      */
     public YtChannelUtils() {
-        this.youtube = new YouTube.Builder(new NetHttpTransport(), new JacksonFactory(), new HttpRequestInitializer() {
-            public void initialize(HttpRequest request) {
-                // no-op override
-            }
-        }).setApplicationName("basedefender-yt-scraper").build();
+        this.youtube = new YouTube.Builder(new NetHttpTransport(), new JacksonFactory(),
+                request -> { }).setApplicationName(this.applicationName).build();
 
         setEnvironment();
     }
@@ -45,14 +45,12 @@ public class YtChannelUtils {
 
     public YoutubeApiResponse searchVideosByChannel(String channelId) {
 
-        // Define the API request for retrieving search results.
         YouTube.Search.List search;
         try {
             search = this.youtube.search().list("id,snippet");
         } catch (IOException ex) {
-            ApiResponseStatus apiResponseStatus = new ApiResponseStatus(HttpStatusCode.NOT_FOUND,
+            return YoutubeApiResponseUtil.getErrorResponse(HttpStatusCode.SERVICE_UNAVAILABLE,
                     "Failed while initializing search for YouTube.");
-            return new YoutubeApiResponseImpl(null, apiResponseStatus);
         }
 
         // Set your developer key from the {{ Google Cloud Console }} for
@@ -80,11 +78,9 @@ public class YtChannelUtils {
 
         } catch (IOException ex) {
 
-            ApiResponseStatus apiResponseStatus = new ApiResponseStatus(HttpStatusCode.NOT_FOUND,
+            return YoutubeApiResponseUtil.getErrorResponse(HttpStatusCode.BAD_REQUEST,
                     "Failed while executing search on YouTube. Wrong search parameter? " +
                             "Check Channel ID.");
-            return new YoutubeApiResponseImpl(null, apiResponseStatus);
-
         }
     }
 

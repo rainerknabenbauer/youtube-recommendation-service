@@ -1,6 +1,5 @@
 package de.basedefender.youtube.api.service;
 
-import com.google.api.services.youtube.model.SearchListResponse;
 import de.basedefender.youtube.api.util.YtChannelUtils;
 import de.basedefender.youtube.domain.domain.YoutubeApiResponse;
 import lombok.RequiredArgsConstructor;
