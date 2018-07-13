@@ -6,10 +6,14 @@ import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.services.youtube.YouTube;
 import com.google.api.services.youtube.model.SearchListResponse;
-import de.basedefender.youtube.domain.EnvironmentVariablesNotSetException;
-import de.basedefender.youtube.domain.SearchExecutionException;
-import de.basedefender.youtube.domain.SearchType;
-import de.basedefender.youtube.domain.YoutubeListNotRetrievedException;
+import de.basedefender.youtube.domain.domain.HttpStatusCode;
+import de.basedefender.youtube.domain.domain.YoutubeApiResponse;
+import de.basedefender.youtube.domain.domain.impl.YoutubeApiResponseImpl;
+import de.basedefender.youtube.domain.domain.value.ApiResponseStatus;
+import de.basedefender.youtube.domain.exceptions.EnvironmentVariablesNotSetException;
+import de.basedefender.youtube.domain.exceptions.SearchExecutionException;
+import de.basedefender.youtube.domain.domain.SearchType;
+import de.basedefender.youtube.domain.exceptions.YoutubeListNotRetrievedException;
 
 import java.io.IOException;
 
@@ -19,7 +23,7 @@ public class YtChannelUtils {
 
     private String apiKey;
 
-    private Long number_of_videos_returned = 10L;
+    private Long numberOfVideosReturned = 10L;
 
     /**
      * Youtube Utils.
@@ -34,22 +38,21 @@ public class YtChannelUtils {
         setEnvironment();
     }
 
-    public YtChannelUtils(Long number_of_videos_returned) {
+    public YtChannelUtils(Long numberOfVideosReturned) {
         this();
-        this.number_of_videos_returned = number_of_videos_returned;
+        this.numberOfVideosReturned = numberOfVideosReturned;
     }
 
-    public SearchListResponse searchVideos(String channelId) {
-        // get query
-        // execute query
-        // return result (create domain object)
+    public YoutubeApiResponse searchVideosByChannel(String channelId) {
 
         // Define the API request for retrieving search results.
         YouTube.Search.List search;
         try {
             search = this.youtube.search().list("id,snippet");
         } catch (IOException ex) {
-            throw new YoutubeListNotRetrievedException("Youtube search list not retrieved.", ex);
+            ApiResponseStatus apiResponseStatus = new ApiResponseStatus(HttpStatusCode.NOT_FOUND,
+                    "Failed while initializing search for YouTube.");
+            return new YoutubeApiResponseImpl(null, apiResponseStatus);
         }
 
         // Set your developer key from the {{ Google Cloud Console }} for
@@ -66,13 +69,22 @@ public class YtChannelUtils {
         // application uses.
         //search.setFields("items(id/kind,id/videoId,snippet/title,snippet/thumbnails/default/url)");
         // TODO Set Filter
-        search.setMaxResults(number_of_videos_returned);
+        search.setMaxResults(this.numberOfVideosReturned);
 
         // Call the API and print results.
         try {
-            return search.execute();
+            SearchListResponse searchListResponse = search.execute();
+
+            return new YoutubeApiResponseImpl(searchListResponse,
+                    new ApiResponseStatus(HttpStatusCode.OK));
+
         } catch (IOException ex) {
-            throw new SearchExecutionException("Search execution failed.", ex);
+
+            ApiResponseStatus apiResponseStatus = new ApiResponseStatus(HttpStatusCode.NOT_FOUND,
+                    "Failed while executing search on YouTube. Wrong search parameter? " +
+                            "Check Channel ID.");
+            return new YoutubeApiResponseImpl(null, apiResponseStatus);
+
         }
     }
 

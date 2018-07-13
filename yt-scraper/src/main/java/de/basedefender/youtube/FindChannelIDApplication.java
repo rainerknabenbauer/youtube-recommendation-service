@@ -9,7 +9,7 @@ import com.google.api.services.youtube.YouTubeRequest;
 import com.google.api.services.youtube.model.ResourceId;
 import com.google.api.services.youtube.model.SearchListResponse;
 import com.google.api.services.youtube.model.SearchResult;
-import de.basedefender.youtube.domain.SearchType;
+import de.basedefender.youtube.domain.domain.SearchType;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -66,7 +66,7 @@ public class FindChannelIDApplication {
 
             String channelId = singleVideo.getSnippet().getChannelId();
             String channelTitle = singleVideo.getSnippet().getChannelTitle();
-            // String channelName = singleVideo.getSnippet().getDescription();   null
+            // String channelName = singleVideo.getSnippet().getDetails();   null
             // String channelName = singleVideo.getKind();
 
             ResourceId rId = singleVideo.getId();

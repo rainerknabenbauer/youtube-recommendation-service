@@ -2,6 +2,8 @@ package de.basedefender.youtube;
 
 import com.google.api.services.youtube.model.SearchListResponse;
 import de.basedefender.youtube.api.util.YtChannelUtils;
+import de.basedefender.youtube.domain.domain.YoutubeApiResponse;
+import de.basedefender.youtube.domain.domain.value.ApiResponseStatus;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -19,10 +21,10 @@ public class YtChannelUtilsTest {
     @Test
     public void searchVideosByChannelTest() {
 
-        SearchListResponse response = ytChannelUtils.searchVideos(gotoChannelId);
+        YoutubeApiResponse response = ytChannelUtils.searchVideosByChannel(gotoChannelId);
 
-        Assert.assertTrue(response.getItems().iterator().hasNext());
-        Assert.assertEquals(10, response.getItems().size());
+        Assert.assertTrue(response.getResponse().getItems().iterator().hasNext());
+        Assert.assertEquals(10, response.getResponse().getItems().size());
     }
 
 

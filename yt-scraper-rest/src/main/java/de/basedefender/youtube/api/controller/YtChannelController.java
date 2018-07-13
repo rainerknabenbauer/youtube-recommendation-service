@@ -2,6 +2,7 @@ package de.basedefender.youtube.api.controller;
 
 import com.google.api.services.youtube.model.SearchListResponse;
 import de.basedefender.youtube.api.service.YtChannelService;
+import de.basedefender.youtube.domain.domain.YoutubeApiResponse;
 import io.swagger.annotations.Api;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +29,7 @@ public class YtChannelController {
     }
 
     @GetMapping("/{channelId}")
-    public SearchListResponse getVideosByChannelId(@PathVariable String channelId) {
+    public YoutubeApiResponse getVideosByChannelId(@PathVariable String channelId) {
         return this.ytChannelService.searchVideosByChannel(channelId);
     }
 
