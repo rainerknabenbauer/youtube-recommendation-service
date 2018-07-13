@@ -1,18 +1,16 @@
 package de.basedefender.youtube.api.util;
 
-import com.google.api.client.http.HttpRequest;
-import com.google.api.client.http.HttpRequestInitializer;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.services.youtube.YouTube;
 import com.google.api.services.youtube.model.SearchListResponse;
+import de.basedefender.youtube.domain.domain.AbstractYoutubeApiResponse;
 import de.basedefender.youtube.domain.domain.HttpStatusCode;
 import de.basedefender.youtube.domain.domain.SearchType;
-import de.basedefender.youtube.domain.domain.YoutubeApiResponse;
-import de.basedefender.youtube.domain.domain.impl.YoutubeApiResponseImpl;
+import de.basedefender.youtube.domain.YoutubeApiSuccess;
 import de.basedefender.youtube.domain.domain.value.ApiResponseStatus;
 import de.basedefender.youtube.domain.exceptions.EnvironmentVariablesNotSetException;
-import de.basedefender.youtube.domain.util.YoutubeApiResponseUtil;
+import de.basedefender.youtube.util.YoutubeApiResponseUtil;
 import org.springframework.beans.factory.annotation.Value;
 
 import java.io.IOException;
@@ -43,7 +41,7 @@ public class YtChannelUtils {
         this.numberOfVideosReturned = numberOfVideosReturned;
     }
 
-    public YoutubeApiResponse searchVideosByChannel(String channelId) {
+    public AbstractYoutubeApiResponse searchVideosByChannel(String channelId) {
 
         YouTube.Search.List search;
         try {
@@ -65,7 +63,8 @@ public class YtChannelUtils {
 
         // To increase efficiency, only retrieve the fields that the
         // application uses.
-        //search.setFields("items(id/kind,id/videoId,snippet/title,snippet/thumbnails/default/url)");
+        //search.setFields("items(id/kind,id/videoId,snippet/title,
+        // snippet/thumbnails/default/url)");
         // TODO Set Filter
         search.setMaxResults(this.numberOfVideosReturned);
 
@@ -73,7 +72,7 @@ public class YtChannelUtils {
         try {
             SearchListResponse searchListResponse = search.execute();
 
-            return new YoutubeApiResponseImpl(searchListResponse,
+            return new YoutubeApiSuccess(searchListResponse,
                     new ApiResponseStatus(HttpStatusCode.OK));
 
         } catch (IOException ex) {
