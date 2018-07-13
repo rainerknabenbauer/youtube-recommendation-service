@@ -11,10 +11,6 @@ public class YtChannelService {
 
     private final YtChannelUtils ytChannelUtils;
 
-    public YtChannelService(YtChannelUtils ytChannelUtils) {
-        this.ytChannelUtils = ytChannelUtils;
-    }
-
     public SearchListResponse searchVideosByChannel(String channelId) {
 
         //TODO Transform SearchListResponse in domain object (maybe optional signature)

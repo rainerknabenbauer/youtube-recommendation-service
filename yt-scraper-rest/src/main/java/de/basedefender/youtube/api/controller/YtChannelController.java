@@ -13,13 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/channels")
-@Api(tags = "Youtube Channel Controller")
+@Api(tags = "Youtube Channels Controller")
+@RequiredArgsConstructor
 public class YtChannelController {
-
-    @Autowired
-    public YtChannelController(YtChannelService ytChannelService) {
-        this.ytChannelService = ytChannelService;
-    }
 
     private final YtChannelService ytChannelService;
 
