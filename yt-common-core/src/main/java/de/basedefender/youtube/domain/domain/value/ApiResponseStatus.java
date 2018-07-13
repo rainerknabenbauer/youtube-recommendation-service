@@ -10,16 +10,20 @@ import lombok.Value;
 public class ApiResponseStatus {
 
     public ApiResponseStatus(HttpStatusCode httpStatusCode, String details) {
-        this.httpStatusCode = httpStatusCode;
+        this.httpStatusCode = httpStatusCode.getHttpCode();
+        this.httpMessage = httpStatusCode;
         this.details = details;
     }
 
     public ApiResponseStatus(HttpStatusCode httpStatusCode) {
-        this.httpStatusCode = httpStatusCode;
+        this.httpStatusCode = httpStatusCode.getHttpCode();
+        this.httpMessage = httpStatusCode;
         this.details = httpStatusCode.toString();
     }
 
-    private final HttpStatusCode httpStatusCode;
+    private final Integer httpStatusCode;
+
+    private final HttpStatusCode httpMessage;
 
     private final String details;
 
