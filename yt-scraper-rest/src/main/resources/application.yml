@@ -1,0 +1,24 @@
+# REST
+server:
+  port: 65010
+
+# MongoDb
+spring:
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/ytScraperDb
+  devtools:
+    restart:
+      enabled: false
+
+
+# Custom parameters
+youtube:
+  application:
+    name: basedefender-yt-scraper
+    numberOfVideosReturned: 10
+
+environment:
+  youtube:
+    api:
+      key: youtube.api.key

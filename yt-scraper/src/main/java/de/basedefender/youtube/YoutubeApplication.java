@@ -87,7 +87,7 @@ public class YoutubeApplication {
 
             String channelName = singleVideo.getSnippet().getChannelId();
             // String channelName = singleVideo.getSnippet().getChannelTitle();   null
-            // String channelName = singleVideo.getSnippet().getDescription();   null
+            // String channelName = singleVideo.getSnippet().getDetails();   null
             // String channelName = singleVideo.getKind();
 
             ResourceId rId = singleVideo.getId();
