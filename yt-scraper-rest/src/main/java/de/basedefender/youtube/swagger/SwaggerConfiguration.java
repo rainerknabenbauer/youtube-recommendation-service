@@ -31,7 +31,7 @@ public class SwaggerConfiguration {
                 .description("Building a YouTube scraper to extract commentators from interesting channels, " +
                         "iterating over those commentators other comments to find useful new content that " +
                         "otherwise wouldn't have been discoverable." +
-                        "\nUse case: Find new videos or channels recommendations based on a " +
+                        "\nUse case: Find new videos or get channel recommendations based on a " +
                         "specific channel's community.")
                 .version("0.1.0")
                 .license("Creative Commons (nc)")
