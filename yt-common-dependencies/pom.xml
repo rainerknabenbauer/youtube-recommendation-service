@@ -22,7 +22,7 @@
 
         <youtubeVersion>v3-rev204-1.23.0</youtubeVersion>
         <googleApiClient>1.23.0</googleApiClient>
-        <swaggerVersion>2.7.0</swaggerVersion>
+        <swaggerVersion>2.8.0</swaggerVersion>
         <!-- later version requires lombok.anyConstructor.addConstructorProperties -->
         <lombokVersion>1.16.18</lombokVersion>
 

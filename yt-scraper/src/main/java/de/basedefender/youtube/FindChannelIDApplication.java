@@ -22,7 +22,7 @@ public class FindChannelIDApplication {
     private YouTube youTube;
     private YouTubeRequest youTubeRequest;
     private static final String apiKey = "AIzaSyDbVzRmlKdIEhwE7_FoxoRas_gp3p6cbpE";
-    private static final Long NUMBER_OF_VIDEOS_RETURNED = 10L;
+    private static final Long NUMBER_OF_VIDEOS_RETURNED = 1L;
 
     private FindChannelIDApplication() throws Exception {
 

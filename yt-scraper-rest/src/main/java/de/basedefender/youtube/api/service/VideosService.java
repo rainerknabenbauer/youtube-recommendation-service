@@ -3,6 +3,7 @@ package de.basedefender.youtube.api.service;
 import com.google.api.services.youtube.YouTube;
 import com.google.api.services.youtube.model.CommentThreadListResponse;
 import de.basedefender.youtube.YoutubeApiResponse;
+import de.basedefender.youtube.api.util.SearchUtils;
 import de.basedefender.youtube.domain.YoutubeApiSuccess;
 import de.basedefender.youtube.domain.HttpStatusCode;
 import de.basedefender.youtube.domain.value.ApiKey;
@@ -18,25 +19,35 @@ public class VideosService extends AbstractYouTubeService {
         super(youTube, apiKey);
     }
 
+    /**
+     * Get comments for a specific video.
+     * @param videoId YouTube Video ID
+     * @return Comments
+     */
     public YoutubeApiResponse getComments(String videoId) {
 
-        videoId = videoId.equals("") ? "_-uaFU3bO1A" : videoId;
+        YouTube.CommentThreads.List search;
+        try {
+            search = super.getYouTube()
+                    .commentThreads().list("snippet,replies");
+        } catch (IOException ex) {
+            return YoutubeApiResponseUtil.getErrorResponse(HttpStatusCode.SERVICE_UNAVAILABLE,
+                    "Failed while initializing search for YouTube. " +
+                            "Wrong parameters for YouTube.Search.List?");
+        }
+
+            search.setKey(super.getApiKey());
+
+            search.setVideoId(videoId);
 
         try {
-
-            YouTube.CommentThreads.List commentThreadsListByVideoIdRequest = super.getYouTube()
-                    .commentThreads().list("snippet,replies");
-
-            commentThreadsListByVideoIdRequest.setVideoId(videoId);
-
-            CommentThreadListResponse response = commentThreadsListByVideoIdRequest.execute();
+            CommentThreadListResponse response = search.execute();
             return new YoutubeApiSuccess(response);
-
         } catch (IOException ex) {
-
+            ex.printStackTrace();
             return YoutubeApiResponseUtil.getErrorResponse(HttpStatusCode.BAD_REQUEST,
                     "Failed while executing search on YouTube. Wrong search parameter? " +
-                            "Check Channel ID.");
+                            "Check Video ID.");
         }
 
     }
