@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Configuration;
 public class YoutubeServiceConfiguration {
 
 
-    @Value("${youTube.application.name}")
+    @Value("${youtube.application.name}")
     private String applicationName;
 
     @Value("${environment.youtube.api.key}")

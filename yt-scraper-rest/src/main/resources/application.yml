@@ -17,6 +17,7 @@ youtube:
   application:
     name: basedefender-yt-scraper
     numberOfVideosReturned: 10
+
 environment:
   youtube:
     api:
