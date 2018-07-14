@@ -16,7 +16,7 @@
 
     <artifactId>yt-common-dependencies</artifactId>
     <version>0.1.0-SNAPSHOT</version>
-    <groupId>de.basedefender.youtube.scraper</groupId>
+    <groupId>de.basedefender.youTube.scraper</groupId>
 
     <properties>
 
@@ -34,13 +34,13 @@
         <dependency>
             <artifactId>yt-common-core</artifactId>
             <version>0.1.0-SNAPSHOT</version>
-            <groupId>de.basedefender.youtube.scraper</groupId>
+            <groupId>de.basedefender.youTube.scraper</groupId>
         </dependency>
 
         <!-- Google / Youtube -->
         <dependency>
             <groupId>com.google.apis</groupId>
-            <artifactId>google-api-services-youtube</artifactId>
+            <artifactId>google-api-services-youTube</artifactId>
             <version>${youtubeVersion}</version>
         </dependency>
 

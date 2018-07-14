@@ -1,7 +1,8 @@
 package de.basedefender.youtube.api.controller;
 
 import de.basedefender.youtube.api.service.ChannelsService;
-import de.basedefender.youtube.domain.domain.YoutubeApiResponse;
+import de.basedefender.youtube.YoutubeApiResponse;
+import de.basedefender.youtube.domain.HttpStatusCode;
 import io.swagger.annotations.Api;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -28,22 +29,22 @@ public class ChannelsController {
 
     @GetMapping("/{channelId}")
     public YoutubeApiResponse getVideosByChannelId(@PathVariable String channelId) {
-        return this.ytChannelService.searchVideosByChannel(channelId);
+        return this.ytChannelService.searchVideos(channelId);
     }
 
     @GetMapping("/likes/{channelId}")
     public String getLikesByChannelId(@PathVariable String channelId) {
-        return this.implementationMessage;
+        return HttpStatusCode.NOT_IMPLEMENTED.toString();
     }
 
     @GetMapping("/favorites/{channelId}")
     public String getFavoritesByChannelId(@PathVariable String channelId) {
-        return this.implementationMessage;
+        return HttpStatusCode.NOT_IMPLEMENTED.toString();
     }
 
     @GetMapping("/watchHistory/{channelId}")
     public String getWatchHistoryByChannelId(@PathVariable String channelId) {
-        return this.implementationMessage;
+        return HttpStatusCode.NOT_IMPLEMENTED.toString();
     }
 
 

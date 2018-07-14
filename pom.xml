@@ -7,12 +7,12 @@
     <parent>
         <artifactId>yt-common-parent</artifactId>
         <version>0.1.0-SNAPSHOT</version>
-        <groupId>de.basedefender.youtube.scraper</groupId>
+        <groupId>de.basedefender.youTube.scraper</groupId>
         <relativePath>yt-common-parent</relativePath>
     </parent>
 
-    <groupId>de.basedefender.youtube.scraper</groupId>
-    <artifactId>youtube-recommendations-service</artifactId>
+    <groupId>de.basedefender.youTube.scraper</groupId>
+    <artifactId>youTube-recommendations-service</artifactId>
     <packaging>pom</packaging>
     <version>0.1.0-SNAPSHOT</version>
 

@@ -9,7 +9,7 @@ import com.google.api.services.youtube.YouTubeRequest;
 import com.google.api.services.youtube.model.ResourceId;
 import com.google.api.services.youtube.model.SearchListResponse;
 import com.google.api.services.youtube.model.SearchResult;
-import de.basedefender.youtube.domain.domain.SearchType;
+import de.basedefender.youtube.domain.SearchType;
 
 import java.io.BufferedReader;
 import java.io.IOException;

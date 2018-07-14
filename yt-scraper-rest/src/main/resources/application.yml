@@ -16,6 +16,8 @@ spring:
 youtube:
   application:
     name: basedefender-yt-scraper
-messages:
-  notyetimplemented: Not yet implemented.
-
+    numberOfVideosReturned: 10
+environment:
+  youtube:
+    api:
+      key: youtube.api.key

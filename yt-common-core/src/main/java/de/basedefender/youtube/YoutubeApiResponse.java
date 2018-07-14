@@ -1,6 +1,6 @@
-package de.basedefender.youtube.domain.domain;
+package de.basedefender.youtube;
 
-import de.basedefender.youtube.domain.domain.value.ApiResponseStatus;
+import de.basedefender.youtube.domain.value.ApiResponseStatus;
 
 /**
  * REST Response wrapper.

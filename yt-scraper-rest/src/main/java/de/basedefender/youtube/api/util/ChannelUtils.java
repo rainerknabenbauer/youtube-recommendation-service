@@ -1,15 +1,13 @@
 package de.basedefender.youtube.api.util;
 
-import com.google.api.client.http.javanet.NetHttpTransport;
-import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.services.youtube.YouTube;
 import com.google.api.services.youtube.model.SearchListResponse;
-import de.basedefender.youtube.domain.domain.AbstractYoutubeApiResponse;
-import de.basedefender.youtube.domain.domain.HttpStatusCode;
-import de.basedefender.youtube.domain.domain.SearchType;
-import de.basedefender.youtube.domain.YoutubeApiSuccess;
-import de.basedefender.youtube.domain.domain.value.ApiResponseStatus;
-import de.basedefender.youtube.domain.exceptions.EnvironmentVariablesNotSetException;
+import de.basedefender.youtube.YoutubeApiSuccess;
+import de.basedefender.youtube.domain.AbstractYoutubeApiResponse;
+import de.basedefender.youtube.domain.HttpStatusCode;
+import de.basedefender.youtube.domain.SearchType;
+import de.basedefender.youtube.domain.value.ApiResponseStatus;
+import de.basedefender.youtube.exceptions.EnvironmentVariablesNotSetException;
 import de.basedefender.youtube.util.YoutubeApiResponseUtil;
 import org.springframework.beans.factory.annotation.Value;
 
@@ -17,35 +15,26 @@ import java.io.IOException;
 
 public class ChannelUtils {
 
-    private YouTube youtube;
+    private final YouTube youTube;
+
+    @Value("youtube.application.numberOfVideosReturned")
+    private Long numberOfVideosReturned;
 
     private String apiKey;
-
-    private Long numberOfVideosReturned = 10L;
-
-    @Value("${youtube.application.name}")
-    private String applicationName;
 
     /**
      * Youtube Utils.
      */
-    public ChannelUtils() {
-        this.youtube = new YouTube.Builder(new NetHttpTransport(), new JacksonFactory(),
-                request -> { }).setApplicationName(this.applicationName).build();
-
+    public ChannelUtils(YouTube youTube) {
+        this.youTube = youTube;
         setEnvironment();
-    }
-
-    public ChannelUtils(Long numberOfVideosReturned) {
-        this();
-        this.numberOfVideosReturned = numberOfVideosReturned;
     }
 
     public AbstractYoutubeApiResponse searchVideosByChannel(String channelId) {
 
         YouTube.Search.List search;
         try {
-            search = this.youtube.search().list("id,snippet");
+            search = this.youTube.search().list("id,snippet");
         } catch (IOException ex) {
             return YoutubeApiResponseUtil.getErrorResponse(HttpStatusCode.SERVICE_UNAVAILABLE,
                     "Failed while initializing search for YouTube.");
@@ -68,12 +57,15 @@ public class ChannelUtils {
         // TODO Set Filter
         search.setMaxResults(this.numberOfVideosReturned);
 
+        return executeSearch(search);
+    }
+
+    private AbstractYoutubeApiResponse executeSearch(YouTube.Search.List search) {
         // Call the API and print results.
         try {
             SearchListResponse searchListResponse = search.execute();
 
-            return new YoutubeApiSuccess(searchListResponse,
-                    new ApiResponseStatus(HttpStatusCode.OK));
+            return new YoutubeApiSuccess(searchListResponse);
 
         } catch (IOException ex) {
 
@@ -83,14 +75,15 @@ public class ChannelUtils {
         }
     }
 
+
     /**
      * Initializes required environment variables.
      */
     private void setEnvironment() {
         try {
-            this.apiKey = System.getenv("youtube.api.key");
+            this.apiKey = System.getenv("youTube.api.key");
         } catch (Exception ex) {
-            throw new EnvironmentVariablesNotSetException("Environment variable 'youtube.api.key' not set.", ex);
+            throw new EnvironmentVariablesNotSetException("Environment variable 'youTube.api.key' not set.", ex);
         }
     }
 }

@@ -1,6 +1,6 @@
-package de.basedefender.youtube.domain.domain.value;
+package de.basedefender.youtube.domain.value;
 
-import de.basedefender.youtube.domain.domain.HttpStatusCode;
+import de.basedefender.youtube.domain.HttpStatusCode;
 import lombok.Value;
 
 /**

@@ -1,6 +1,7 @@
 package de.basedefender.youtube.api.controller;
 
 import de.basedefender.youtube.api.service.VideosService;
+import de.basedefender.youtube.domain.HttpStatusCode;
 import io.swagger.annotations.Api;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -17,12 +18,9 @@ public class VideosController {
 
     private final VideosService videosService;
 
-    @Value("${messages.notyetimplemented}")
-    private String implementationMessage;
-
     @GetMapping("/comments/{videoId}")
     public String getCommentsByVideoId(@PathVariable String videoId) {
-        return implementationMessage;
+        return HttpStatusCode.NOT_IMPLEMENTED.toString();
     }
 
 

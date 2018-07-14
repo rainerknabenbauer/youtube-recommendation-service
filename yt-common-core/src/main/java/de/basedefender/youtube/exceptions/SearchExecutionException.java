@@ -1,4 +1,4 @@
-package de.basedefender.youtube.domain.exceptions;
+package de.basedefender.youtube.exceptions;
 
 import jdk.nashorn.internal.objects.annotations.Setter;
 

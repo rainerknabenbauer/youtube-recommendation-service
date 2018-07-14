@@ -26,7 +26,7 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="yt-common-core" />
-    <orderEntry type="library" name="Maven: com.google.apis:google-api-services-youtube:v3-rev204-1.23.0" level="project" />
+    <orderEntry type="library" name="Maven: com.google.apis:google-api-services-youTube:v3-rev204-1.23.0" level="project" />
     <orderEntry type="library" name="Maven: com.google.api-client:google-api-client:1.23.0" level="project" />
     <orderEntry type="library" name="Maven: com.google.oauth-client:google-oauth-client:1.23.0" level="project" />
     <orderEntry type="library" name="Maven: com.google.http-client:google-http-client:1.23.0" level="project" />
