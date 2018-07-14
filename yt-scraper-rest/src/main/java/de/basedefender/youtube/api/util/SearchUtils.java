@@ -1,5 +1,7 @@
 package de.basedefender.youtube.api.util;
 
+import com.google.api.services.youtube.YouTube;
+import com.google.api.services.youtube.model.SearchListResponse;
 import de.basedefender.youtube.YoutubeApiSuccess;
 import de.basedefender.youtube.domain.AbstractYoutubeApiResponse;
 import de.basedefender.youtube.domain.HttpStatusCode;
