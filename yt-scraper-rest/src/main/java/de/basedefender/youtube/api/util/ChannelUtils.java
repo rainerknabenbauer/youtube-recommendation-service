@@ -2,11 +2,10 @@ package de.basedefender.youtube.api.util;
 
 import com.google.api.services.youtube.YouTube;
 import com.google.api.services.youtube.model.SearchListResponse;
-import de.basedefender.youtube.YoutubeApiSuccess;
+import de.basedefender.youtube.domain.YoutubeApiSuccess;
 import de.basedefender.youtube.domain.AbstractYoutubeApiResponse;
 import de.basedefender.youtube.domain.HttpStatusCode;
 import de.basedefender.youtube.domain.SearchType;
-import de.basedefender.youtube.domain.value.ApiResponseStatus;
 import de.basedefender.youtube.exceptions.EnvironmentVariablesNotSetException;
 import de.basedefender.youtube.util.YoutubeApiResponseUtil;
 import org.springframework.beans.factory.annotation.Value;

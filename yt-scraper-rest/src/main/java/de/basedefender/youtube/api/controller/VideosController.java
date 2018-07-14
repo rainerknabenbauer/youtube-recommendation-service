@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/videos")
-@Api(tags = "Youtube Videos Controller")
+@Api(tags = "Youtube Videos")
 @RequiredArgsConstructor
 public class VideosController {
 

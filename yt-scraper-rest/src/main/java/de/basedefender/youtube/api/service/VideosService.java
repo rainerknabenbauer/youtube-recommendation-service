@@ -3,7 +3,7 @@ package de.basedefender.youtube.api.service;
 import com.google.api.services.youtube.YouTube;
 import com.google.api.services.youtube.model.CommentThreadListResponse;
 import de.basedefender.youtube.YoutubeApiResponse;
-import de.basedefender.youtube.YoutubeApiSuccess;
+import de.basedefender.youtube.domain.YoutubeApiSuccess;
 import de.basedefender.youtube.domain.HttpStatusCode;
 import de.basedefender.youtube.domain.value.ApiKey;
 import de.basedefender.youtube.util.YoutubeApiResponseUtil;

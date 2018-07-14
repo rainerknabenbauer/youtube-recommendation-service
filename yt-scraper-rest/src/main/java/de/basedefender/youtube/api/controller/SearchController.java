@@ -1,10 +1,12 @@
 package de.basedefender.youtube.api.controller;
 
 import de.basedefender.youtube.domain.HttpStatusCode;
+import io.swagger.annotations.Api;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@Api(tags = "YouTube Search")
 @RequestMapping("/search")
 public class SearchController {
 

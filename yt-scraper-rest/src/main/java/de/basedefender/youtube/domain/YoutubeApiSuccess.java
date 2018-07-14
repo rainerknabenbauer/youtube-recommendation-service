@@ -1,8 +1,6 @@
-package de.basedefender.youtube;
+package de.basedefender.youtube.domain;
 
 import com.google.api.client.json.GenericJson;
-import de.basedefender.youtube.domain.AbstractYoutubeApiSuccess;
-import de.basedefender.youtube.domain.HttpStatusCode;
 import de.basedefender.youtube.domain.value.ApiResponseStatus;
 
 /**

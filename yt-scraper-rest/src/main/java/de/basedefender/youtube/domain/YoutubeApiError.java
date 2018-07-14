@@ -1,6 +1,5 @@
-package de.basedefender.youtube;
+package de.basedefender.youtube.domain;
 
-import de.basedefender.youtube.domain.AbstractYoutubeApiError;
 import de.basedefender.youtube.domain.value.ApiResponseStatus;
 
 /**

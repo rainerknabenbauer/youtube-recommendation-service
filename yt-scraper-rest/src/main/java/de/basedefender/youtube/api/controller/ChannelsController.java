@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/channels")
-@Api(tags = "Youtube Channels Controller")
+@Api(tags = "Youtube Channels")
 @RequiredArgsConstructor
 public class ChannelsController {
 
