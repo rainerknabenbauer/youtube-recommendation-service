@@ -6,9 +6,9 @@ import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 @ComponentScan("de.basedefender.youtube")
-public class YtScraperRestApplication {
+public class YoutubeScraperRestApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(YtScraperRestApplication.class);
+        SpringApplication.run(YoutubeScraperRestApplication.class);
     }
 }

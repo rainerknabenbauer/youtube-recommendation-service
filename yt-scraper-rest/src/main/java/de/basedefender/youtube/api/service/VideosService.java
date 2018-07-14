@@ -3,7 +3,7 @@ package de.basedefender.youtube.api.service;
 import org.springframework.stereotype.Service;
 
 @Service
-public class YtVideoService {
+public class VideosService {
 
 
 

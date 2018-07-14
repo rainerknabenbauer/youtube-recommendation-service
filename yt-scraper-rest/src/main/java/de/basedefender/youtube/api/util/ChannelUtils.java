@@ -15,7 +15,7 @@ import org.springframework.beans.factory.annotation.Value;
 
 import java.io.IOException;
 
-public class YtChannelUtils {
+public class ChannelUtils {
 
     private YouTube youtube;
 
@@ -29,14 +29,14 @@ public class YtChannelUtils {
     /**
      * Youtube Utils.
      */
-    public YtChannelUtils() {
+    public ChannelUtils() {
         this.youtube = new YouTube.Builder(new NetHttpTransport(), new JacksonFactory(),
                 request -> { }).setApplicationName(this.applicationName).build();
 
         setEnvironment();
     }
 
-    public YtChannelUtils(Long numberOfVideosReturned) {
+    public ChannelUtils(Long numberOfVideosReturned) {
         this();
         this.numberOfVideosReturned = numberOfVideosReturned;
     }

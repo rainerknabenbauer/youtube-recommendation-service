@@ -1,6 +1,6 @@
 package de.basedefender.youtube.api.controller;
 
-import de.basedefender.youtube.api.service.YtVideoService;
+import de.basedefender.youtube.api.service.VideosService;
 import io.swagger.annotations.Api;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/videos")
 @Api(tags = "Youtube Videos Controller")
 @RequiredArgsConstructor
-public class YtVideoConroller {
+public class VideosController {
 
-    private final YtVideoService ytVideoService;
+    private final VideosService videosService;
 
     @Value("${messages.notyetimplemented}")
     private String implementationMessage;

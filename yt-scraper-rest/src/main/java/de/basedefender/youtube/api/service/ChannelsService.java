@@ -1,15 +1,15 @@
 package de.basedefender.youtube.api.service;
 
-import de.basedefender.youtube.api.util.YtChannelUtils;
+import de.basedefender.youtube.api.util.ChannelUtils;
 import de.basedefender.youtube.domain.domain.YoutubeApiResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class YtChannelService {
+public class ChannelsService {
 
-    private final YtChannelUtils ytChannelUtils;
+    private final ChannelUtils ytChannelUtils;
 
     public YoutubeApiResponse searchVideosByChannel(String channelId) {
 
