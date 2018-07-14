@@ -7,28 +7,40 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.0.3.RELEASE</version>
+        <relativePath></relativePath>
     </parent>
 
+    <packaging>pom</packaging>
 
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>yt-common-dependencies</artifactId>
     <version>0.1.0-SNAPSHOT</version>
-    <groupId>de.basedefender.youtube.scraper</groupId>
+    <groupId>de.basedefender.youTube.scraper</groupId>
 
     <properties>
+
         <youtubeVersion>v3-rev204-1.23.0</youtubeVersion>
         <googleApiClient>1.23.0</googleApiClient>
         <swaggerVersion>2.7.0</swaggerVersion>
-        <lombokVersion>1.18.0</lombokVersion>
+        <!-- later version requires lombok.anyConstructor.addConstructorProperties -->
+        <lombokVersion>1.16.18</lombokVersion>
+
     </properties>
 
     <dependencies>
 
+        <!-- basedefender -->
+        <dependency>
+            <artifactId>yt-common-core</artifactId>
+            <version>0.1.0-SNAPSHOT</version>
+            <groupId>de.basedefender.youTube.scraper</groupId>
+        </dependency>
+
         <!-- Google / Youtube -->
         <dependency>
             <groupId>com.google.apis</groupId>
-            <artifactId>google-api-services-youtube</artifactId>
+            <artifactId>google-api-services-youTube</artifactId>
             <version>${youtubeVersion}</version>
         </dependency>
 
@@ -48,6 +60,13 @@
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-mongodb</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
 
         <!-- Swagger -->
         <dependency>

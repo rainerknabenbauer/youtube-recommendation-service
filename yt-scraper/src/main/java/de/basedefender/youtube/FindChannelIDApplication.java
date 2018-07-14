@@ -9,6 +9,7 @@ import com.google.api.services.youtube.YouTubeRequest;
 import com.google.api.services.youtube.model.ResourceId;
 import com.google.api.services.youtube.model.SearchListResponse;
 import com.google.api.services.youtube.model.SearchResult;
+import de.basedefender.youtube.domain.SearchType;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -65,7 +66,7 @@ public class FindChannelIDApplication {
 
             String channelId = singleVideo.getSnippet().getChannelId();
             String channelTitle = singleVideo.getSnippet().getChannelTitle();
-            // String channelName = singleVideo.getSnippet().getDescription();   null
+            // String channelName = singleVideo.getSnippet().getDetails();   null
             // String channelName = singleVideo.getKind();
 
             ResourceId rId = singleVideo.getId();
@@ -76,8 +77,8 @@ public class FindChannelIDApplication {
             if (rId.getKind().equals("youtube#video")) {
 
                 System.out.println(" Title: " + singleVideo.getSnippet().getTitle());
-                System.out.println(" Channel name: "+channelId);
-                System.out.println(" Channel title: "+channelTitle);
+                System.out.println(" Channel name: " + channelId);
+                System.out.println(" Channel title: " + channelTitle);
 
                 System.out.println("\n-------------------------------------------------------------\n");
 
@@ -95,7 +96,7 @@ public class FindChannelIDApplication {
         // non-authenticated requests. See:
         // {{ https://cloud.google.com/console }}
         search.setKey(apiKey);
-        if(searchType.equals(SearchType.CHANNEL)) {
+        if (searchType.equals(SearchType.CHANNEL)) {
             search.setChannelId(queryTerm);
         } else {
             search.setQ(queryTerm);
@@ -126,11 +127,12 @@ public class FindChannelIDApplication {
     }
 
     private void printVideosFromChannel(Iterator<SearchResult> iteratorSearchResults) {
-           while(iteratorSearchResults.hasNext()) {
+           while (iteratorSearchResults.hasNext()) {
                SearchResult channelVideos = iteratorSearchResults.next();
 
                //TODO order by view count
-               System.out.println("getVideosFromChannel: "+channelVideos.getSnippet().getTitle());
+               System.out.println("getVideosFromChannel: " +
+                       channelVideos.getSnippet().getTitle());
            }
     }
 
