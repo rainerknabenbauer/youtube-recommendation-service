@@ -22,7 +22,7 @@ public abstract class AbstractYouTubeService {
     private final ApiKey apiKey;
 
     @Getter
-    @Value("{youtube.application.numberOfVideosReturned}")
+    @Value("${youtube.application.numberOfVideosReturned}")
     private Long numberOfVideosReturned;
 
 

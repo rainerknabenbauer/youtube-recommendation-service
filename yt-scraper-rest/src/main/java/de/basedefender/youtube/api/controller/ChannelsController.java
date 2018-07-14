@@ -19,12 +19,9 @@ public class ChannelsController {
 
     private final ChannelsService ytChannelService;
 
-    @Value("${messages.notyetimplemented}")
-    private String implementationMessage;
-
     @GetMapping({"", "/"})
     public String getChannelId() {
-        return this.implementationMessage;
+        return HttpStatusCode.NOT_IMPLEMENTED.toString();
     }
 
     @GetMapping("/{channelId}")

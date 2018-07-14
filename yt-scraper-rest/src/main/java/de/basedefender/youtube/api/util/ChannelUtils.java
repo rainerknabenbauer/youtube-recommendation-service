@@ -17,7 +17,7 @@ public class ChannelUtils {
 
     private final YouTube youTube;
 
-    @Value("{youtube.application.numberOfVideosReturned}")
+    @Value("${youtube.application.numberOfVideosReturned}")
     private Long numberOfVideosReturned;
 
     private String apiKey;
