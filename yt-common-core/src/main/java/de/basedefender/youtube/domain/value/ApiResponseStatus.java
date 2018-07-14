@@ -18,7 +18,7 @@ public class ApiResponseStatus {
     public ApiResponseStatus(HttpStatusCode httpStatusCode) {
         this.httpStatusCode = httpStatusCode.getHttpCode();
         this.httpMessage = httpStatusCode;
-        this.details = httpStatusCode.toString();
+        this.details = httpStatusCode.getDetails();
     }
 
     private final Integer httpStatusCode;
