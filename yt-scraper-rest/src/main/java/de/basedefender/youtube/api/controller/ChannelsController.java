@@ -24,8 +24,8 @@ public class ChannelsController {
 
     @ApiIgnore
     @ApiOperation(value = "Paste URL from channel and get ID back")
-    @GetMapping({"", "/"})
-    public String getChannelId() {
+    @GetMapping("")
+    public String getChannelId(String channelId) {
         return HttpStatusCode.NOT_IMPLEMENTED.toString();
     }
 
@@ -33,12 +33,15 @@ public class ChannelsController {
     @GetMapping("/{channelId}")
     public YoutubeApiResponse getVideosByChannelId(@PathVariable String channelId) {
         return this.ytChannelService.searchVideos(channelId);
+
+        //TODO check if video search is through channel and not regular search
     }
 
     @ApiOperation(value = "Extract liked videos from a channel")
     @GetMapping("/likes/{channelId}")
-    public String getLikesByChannelId(@PathVariable String channelId) {
-        return HttpStatusCode.NOT_IMPLEMENTED.toString();
+    public YoutubeApiResponse getLikesByChannelId(@PathVariable String channelId) {
+       // return ytChannelService.getLikesByChannelId(channelId);
+        return null;
     }
 
     @ApiOperation(value = "Extract favorited videos from a channel")

@@ -1,9 +1,12 @@
 package de.basedefender.youtube.api.service;
 
 import com.google.api.services.youtube.YouTube;
+import com.google.api.services.youtube.model.ChannelListResponse;
+import com.google.api.services.youtube.model.PlaylistListResponse;
 import com.google.api.services.youtube.model.SearchListResponse;
 import de.basedefender.youtube.YoutubeApiResponse;
 import de.basedefender.youtube.domain.HttpStatusCode;
+import de.basedefender.youtube.domain.PlaylistSearchType;
 import de.basedefender.youtube.domain.SearchType;
 import de.basedefender.youtube.domain.YoutubeApiSuccess;
 import de.basedefender.youtube.domain.value.ApiKey;
@@ -24,7 +27,13 @@ public class ChannelsService extends AbstractYouTubeService {
     //TODO getVideoQuery()
     public YoutubeApiResponse searchVideos(String channelId) {
 
-        YouTube.Search.List search;
+        /**
+         * 1. Get channel information
+         * 2. Extract uploaded videos ID (playlist presumable)
+         * 3. ? search with ID ?
+         */
+
+        YouTube.Search.List search;  //TODO switch search to channel instead of regular search
         try {
             search = super.getYouTube().search().list("id,snippet,contentDetails");
         } catch (IOException ex) {
@@ -48,6 +57,30 @@ public class ChannelsService extends AbstractYouTubeService {
             return YoutubeApiResponseUtil.getErrorResponse(HttpStatusCode.BAD_REQUEST,
                     "Failed while executing search on YouTube. Wrong search parameter? " +
                             "Check Channel ID.");
+        }
+    }
+
+
+    private ChannelListResponse getChannelDetails(String channelId) {
+        YouTube.Channels.List search;
+        try {
+            search = super.getYouTube().channels().list("snippet,contentDetails");
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+
+        search.setKey(super.getApiKey());
+
+        search.setId(channelId);
+
+        search.setMaxResults(super.getNumberOfVideosReturned());
+
+        try {
+            return search.execute();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            return null;
         }
     }
 }

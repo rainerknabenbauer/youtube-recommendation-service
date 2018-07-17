@@ -21,4 +21,4 @@ youtube:
 environment:
   youtube:
     api:
-      key: youtube.api.key
+      key: youtube.api.key.backup

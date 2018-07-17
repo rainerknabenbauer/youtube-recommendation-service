@@ -13,4 +13,9 @@ public class HomeController {
         return "redirect:/swagger-ui.html";
     }
 
+    @GetMapping("/channels/")
+    public String redirectChannels() {
+        return "redirect://channels";
+    }
+
 }

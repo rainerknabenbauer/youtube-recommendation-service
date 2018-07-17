@@ -1,6 +1,6 @@
 package de.basedefender.youtube.domain;
 
-public enum ChannelSearchType {
+public enum PlaylistSearchType {
 
     LIKES {
         public String toString() {
@@ -11,6 +11,10 @@ public enum ChannelSearchType {
         public String toString() {
             return "favorites";
         }
+    },
+    WATCHHISTORY {
+        public String toString() {
+            return "watchHistory";
+        }
     }
-
 }
