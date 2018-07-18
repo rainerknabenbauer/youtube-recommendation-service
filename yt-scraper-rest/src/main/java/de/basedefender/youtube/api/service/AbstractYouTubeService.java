@@ -3,9 +3,9 @@ package de.basedefender.youtube.api.service;
 import com.google.api.services.youtube.YouTube;
 import com.google.api.services.youtube.model.ChannelListResponse;
 import com.google.api.services.youtube.model.SearchListResponse;
-import de.basedefender.youtube.domain.YoutubeApiSuccess;
 import de.basedefender.youtube.domain.AbstractYoutubeApiResponse;
 import de.basedefender.youtube.domain.HttpStatusCode;
+import de.basedefender.youtube.domain.YoutubeApiSuccess;
 import de.basedefender.youtube.domain.value.ApiKey;
 import de.basedefender.youtube.util.YoutubeApiResponseUtil;
 import lombok.Getter;
@@ -17,59 +17,60 @@ import java.io.IOException;
 @RequiredArgsConstructor
 public abstract class AbstractYouTubeService {
 
-    @Getter
-    private final YouTube youTube;
+  @Getter
+  private final YouTube youTube;
 
-    private final ApiKey apiKey;
+  private final ApiKey apiKey;
 
-    @Getter
-    @Value("${youtube.application.numberOfVideosReturned}")
-    private Long numberOfVideosReturned;
+  @Getter
+  @Value("${youtube.application.numberOfVideosReturned}")
+  private Long numberOfVideosReturned;
 
 
-    public AbstractYoutubeApiResponse executeSearch(YouTube.Search.List search) {
-        // Call the API and print results.
-        try {
-            SearchListResponse searchListResponse = search.execute();
+  public AbstractYoutubeApiResponse executeSearch(YouTube.Search.List search) {
+    // Call the API and print results.
+    try {
+      SearchListResponse searchListResponse = search.execute();
 
-            return new YoutubeApiSuccess(searchListResponse);
+      return new YoutubeApiSuccess(searchListResponse);
 
-        } catch (IOException ex) {
+    } catch (IOException ex) {
 
-            return YoutubeApiResponseUtil.getErrorResponse(HttpStatusCode.BAD_REQUEST,
-                    "Failed while executing search on YouTube. Wrong search parameter? " +
-                            "Check Channel ID.");
-        }
+      return YoutubeApiResponseUtil.getErrorResponse(HttpStatusCode.BAD_REQUEST,
+          "Failed while executing search on YouTube. Wrong search parameter? " +
+              "Check Channel ID.");
     }
+  }
 
-    public String getApiKey() {
-        return this.apiKey.toString();
+  public String getApiKey() {
+    return this.apiKey.toString();
+  }
+
+  //TODO getChannel(String channelId)
+  //TODO getPlaylist(String playlistId)
+
+  /**
+   * Get full channel information
+   *
+   * @param channelId Channel ID
+   * @return Channel information
+   */
+  public ChannelListResponse getChannelDetails(String channelId) {
+    try {
+      return getYouTube()
+          .channels()
+          .list("snippet,contentDetails")
+          .setKey("")
+          .setMaxResults(10L)
+          .execute();
+    } catch (IOException ex) {
+      ex.printStackTrace();
+      return null;
     }
+  }
 
-    //TODO getChannel(String channelId)
-    //TODO getPlaylist(String playlistId)
 
-    /**
-     *  Get full channel information
-     *
-     * @param channelId Channel ID
-     * @return Channel information
-     */
-    public ChannelListResponse getChannelDetails(String channelId) {
-        try {
-            return getYouTube()
-                    .channels()
-                    .list("snippet,contentDetails")
-                    .setKey("")
-                    .setMaxResults(10L)
-                    .execute();
-        } catch (IOException ex) {
-            ex.printStackTrace();
-            return null;
-        }
-    }
-
-    //TODO String prettyPrint();
+  //TODO String prettyPrint();
 
 
 }

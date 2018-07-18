@@ -4,7 +4,7 @@ import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.services.youtube.YouTube;
 import com.google.api.services.youtube.model.ChannelListResponse;
-import de.basedefender.youtube.domain.value.PlaylistsByChannel;
+import de.basedefender.youtube.domain.value.PlaylistsByChannelSearchImpl;
 
 public class PlaylistFromChannelApplication {
 
@@ -21,21 +21,21 @@ public class PlaylistFromChannelApplication {
 
     String channelId = "UCbcTU0KiCbjDEKttI9QjOPw";
 
-    PlaylistsByChannel playlistsByChannel =
-        new PlaylistsByChannel(channelId, NUMBER_OF_VIDEOS_RETURNED);
+    PlaylistsByChannelSearchImpl playlistsByChannelSearch =
+        new PlaylistsByChannelSearchImpl(channelId, NUMBER_OF_VIDEOS_RETURNED);
 
     ChannelListResponse result = new YouTube.Builder(new NetHttpTransport(), new JacksonFactory(),
             request -> {
             }).setApplicationName("basedefender-yt-scraper")
             .build()
             .channels()
-            .list(playlistsByChannel.getPart())
-            .setId(playlistsByChannel.getChannelId())  // Channel id
-            .setKey(playlistsByChannel.getApiKey())
-            .setMaxResults(playlistsByChannel.getMaxResults())
+            .list(playlistsByChannelSearch.getPart())
+            .setId(playlistsByChannelSearch.getChannelId())  // Channel id
+            .setKey(playlistsByChannelSearch.getApiKey())
+            .setMaxResults(playlistsByChannelSearch.getMaxResults())
             .execute();
 
-    System.out.println(PlaylistsByChannel.getPlaylistIds(result));
+    //System.out.println(PlaylistsByChannelSearchImpl.getPlaylistIds(result));
   }
 
 }

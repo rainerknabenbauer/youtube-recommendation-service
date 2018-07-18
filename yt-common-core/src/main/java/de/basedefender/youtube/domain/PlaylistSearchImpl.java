@@ -7,9 +7,9 @@ import com.google.api.services.youtube.model.ChannelListResponse;
 /**
  * Encapsulates playlist searches.
  */
-public abstract class PlaylistSearch extends BaseSearch {
+public abstract class PlaylistSearchImpl extends BaseSearchImpl {
 
-  public static ChannelContentDetails.RelatedPlaylists getPlaylistIds(ChannelListResponse response) {
+  public ChannelContentDetails.RelatedPlaylists getPlaylistIds(ChannelListResponse response) {
 
     Channel channel = response.getItems().get(0);
     return channel.getContentDetails().getRelatedPlaylists();
