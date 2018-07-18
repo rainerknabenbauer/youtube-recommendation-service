@@ -1,6 +1,7 @@
 package de.basedefender.youtube.api.service;
 
 import com.google.api.services.youtube.YouTube;
+import com.google.api.services.youtube.model.ChannelListResponse;
 import com.google.api.services.youtube.model.SearchListResponse;
 import de.basedefender.youtube.domain.YoutubeApiSuccess;
 import de.basedefender.youtube.domain.AbstractYoutubeApiResponse;
@@ -44,4 +45,31 @@ public abstract class AbstractYouTubeService {
     public String getApiKey() {
         return this.apiKey.toString();
     }
+
+    //TODO getChannel(String channelId)
+    //TODO getPlaylist(String playlistId)
+
+    /**
+     *  Get full channel information
+     *
+     * @param channelId Channel ID
+     * @return Channel information
+     */
+    public ChannelListResponse getChannelDetails(String channelId) {
+        try {
+            return getYouTube()
+                    .channels()
+                    .list("snippet,contentDetails")
+                    .setKey("")
+                    .setMaxResults(10L)
+                    .execute();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+    }
+
+    //TODO String prettyPrint();
+
+
 }

@@ -30,11 +30,8 @@ public class FindChannelIDApplication {
 
     private FindChannelIDApplication() throws Exception {
 
-        this.youTube = new YouTube.Builder(new NetHttpTransport(), new JacksonFactory(), new HttpRequestInitializer() {
-            public void initialize(HttpRequest request) throws IOException {
-                // no-op override
-            }
-        }).setApplicationName("basedefender-yt-scraper").build();
+        this.youTube = new YouTube.Builder(new NetHttpTransport(), new JacksonFactory(),
+                request -> { }).setApplicationName("basedefender-yt-scraper").build();
 
         SearchListResponse searchResponse = search(getInputQuery(), SearchType.VIDEO);
 

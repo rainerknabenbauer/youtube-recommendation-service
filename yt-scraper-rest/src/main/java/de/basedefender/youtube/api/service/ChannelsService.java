@@ -61,7 +61,7 @@ public class ChannelsService extends AbstractYouTubeService {
     }
 
 
-    private ChannelListResponse getChannelDetails(String channelId) {
+    public ChannelListResponse getChannelDetails(String channelId) {
         YouTube.Channels.List search;
         try {
             search = super.getYouTube().channels().list("snippet,contentDetails");
