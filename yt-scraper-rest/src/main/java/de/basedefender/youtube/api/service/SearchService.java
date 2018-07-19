@@ -2,12 +2,12 @@ package de.basedefender.youtube.api.service;
 
 import com.google.api.services.youtube.YouTube;
 import com.google.api.services.youtube.model.SearchListResponse;
-import de.basedefender.youtube.YoutubeApiResponse;
+import de.basedefender.youtube.api.YoutubeApiResponse;
 import de.basedefender.youtube.domain.AbstractYouTubeService;
-import de.basedefender.youtube.domain.HttpStatusCode;
-import de.basedefender.youtube.domain.SearchType;
-import de.basedefender.youtube.domain.YoutubeApiSuccess;
-import de.basedefender.youtube.domain.value.ApiKey;
+import de.basedefender.youtube.enums.HttpStatusCode;
+import de.basedefender.youtube.enums.SearchType;
+import de.basedefender.youtube.api.YoutubeApiSuccess;
+import de.basedefender.youtube.value.ApiKey;
 import de.basedefender.youtube.util.YoutubeApiResponseUtil;
 import org.springframework.stereotype.Service;
 

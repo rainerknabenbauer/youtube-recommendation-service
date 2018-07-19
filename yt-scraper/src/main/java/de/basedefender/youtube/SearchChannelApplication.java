@@ -4,7 +4,6 @@ import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.services.youtube.YouTube;
 import com.google.api.services.youtube.model.SearchListResponse;
-import de.basedefender.youtube.domain.SearchType;
 
 import java.io.IOException;
 

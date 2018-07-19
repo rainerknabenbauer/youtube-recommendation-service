@@ -1,7 +1,5 @@
-package de.basedefender.youtube.domain;
+package de.basedefender.youtube.api;
 
-import de.basedefender.youtube.YoutubeApiResponse;
-import de.basedefender.youtube.domain.value.ApiResponseStatus;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 

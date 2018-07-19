@@ -1,14 +1,11 @@
 package de.basedefender.youtube.api.controller;
 
-import de.basedefender.youtube.YoutubeApiResponse;
+import de.basedefender.youtube.api.YoutubeApiResponse;
 import de.basedefender.youtube.api.service.SearchService;
-import de.basedefender.youtube.domain.HttpStatusCode;
-import de.basedefender.youtube.domain.SearchType;
+import de.basedefender.youtube.enums.SearchType;
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController

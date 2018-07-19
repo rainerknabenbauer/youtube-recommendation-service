@@ -4,11 +4,14 @@ import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.services.youtube.YouTube;
 import com.google.api.services.youtube.model.VideoListResponse;
-import de.basedefender.youtube.YoutubeApiResponse;
+import de.basedefender.youtube.api.YoutubeApiResponse;
+import de.basedefender.youtube.api.YoutubeApiError;
+import de.basedefender.youtube.api.YoutubeApiSuccess;
 import de.basedefender.youtube.domain.*;
-import de.basedefender.youtube.domain.value.ApiKey;
-import de.basedefender.youtube.domain.value.ApiResponseStatus;
-import de.basedefender.youtube.domain.value.search.CommentThreadsbyVideoSearch;
+import de.basedefender.youtube.enums.HttpStatusCode;
+import de.basedefender.youtube.value.ApiKey;
+import de.basedefender.youtube.api.ApiResponseStatus;
+import de.basedefender.youtube.search.CommentThreadsbyVideoSearch;
 import org.springframework.stereotype.Service;
 
 @Service

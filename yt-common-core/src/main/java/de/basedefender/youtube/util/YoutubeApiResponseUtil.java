@@ -1,9 +1,9 @@
 package de.basedefender.youtube.util;
 
-import de.basedefender.youtube.domain.YoutubeApiError;
-import de.basedefender.youtube.domain.AbstractYoutubeApiError;
-import de.basedefender.youtube.domain.HttpStatusCode;
-import de.basedefender.youtube.domain.value.ApiResponseStatus;
+import de.basedefender.youtube.api.YoutubeApiError;
+import de.basedefender.youtube.api.AbstractYoutubeApiError;
+import de.basedefender.youtube.enums.HttpStatusCode;
+import de.basedefender.youtube.api.ApiResponseStatus;
 
 public class YoutubeApiResponseUtil {
 

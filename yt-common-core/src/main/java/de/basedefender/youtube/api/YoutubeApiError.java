@@ -1,6 +1,4 @@
-package de.basedefender.youtube.domain;
-
-import de.basedefender.youtube.domain.value.ApiResponseStatus;
+package de.basedefender.youtube.api;
 
 /**
  * Youtube API Response Wrapper for our REST API.

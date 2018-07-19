@@ -1,4 +1,4 @@
-package de.basedefender.youtube.domain;
+package de.basedefender.youtube.enums;
 
 public enum SearchType {
     CHANNEL {

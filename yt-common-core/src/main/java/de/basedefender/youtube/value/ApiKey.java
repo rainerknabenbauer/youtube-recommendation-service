@@ -1,4 +1,4 @@
-package de.basedefender.youtube.domain.value;
+package de.basedefender.youtube.value;
 
 import lombok.Getter;
 import lombok.Value;

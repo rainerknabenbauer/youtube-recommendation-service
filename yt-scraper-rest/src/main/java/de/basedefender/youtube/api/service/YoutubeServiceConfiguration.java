@@ -3,12 +3,11 @@ package de.basedefender.youtube.api.service;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.services.youtube.YouTube;
-import de.basedefender.youtube.domain.value.ApiKey;
+import de.basedefender.youtube.value.ApiKey;
 import de.basedefender.youtube.exceptions.EnvironmentVariablesNotSetException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
 
 @Configuration
 public class YoutubeServiceConfiguration {

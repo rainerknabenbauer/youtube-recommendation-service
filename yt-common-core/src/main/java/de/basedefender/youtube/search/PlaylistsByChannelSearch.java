@@ -1,4 +1,4 @@
-package de.basedefender.youtube.domain.value.search;
+package de.basedefender.youtube.search;
 
 import de.basedefender.youtube.domain.PlaylistSearchImpl;
 import lombok.EqualsAndHashCode;

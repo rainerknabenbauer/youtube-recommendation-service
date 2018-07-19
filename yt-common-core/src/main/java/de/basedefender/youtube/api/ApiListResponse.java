@@ -1,4 +1,4 @@
-package de.basedefender.youtube.domain.value;
+package de.basedefender.youtube.api;
 
 import com.google.api.client.json.GenericJson;
 import lombok.Value;

@@ -2,9 +2,9 @@ package de.basedefender.youtube.api.util;
 
 import com.google.api.services.youtube.YouTube;
 import com.google.api.services.youtube.model.SearchListResponse;
-import de.basedefender.youtube.domain.YoutubeApiSuccess;
-import de.basedefender.youtube.domain.AbstractYoutubeApiResponse;
-import de.basedefender.youtube.domain.HttpStatusCode;
+import de.basedefender.youtube.api.YoutubeApiSuccess;
+import de.basedefender.youtube.api.AbstractYoutubeApiResponse;
+import de.basedefender.youtube.enums.HttpStatusCode;
 import de.basedefender.youtube.util.YoutubeApiResponseUtil;
 
 import java.io.IOException;

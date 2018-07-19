@@ -1,13 +1,11 @@
-package de.basedefender.youtube.domain.value.search;
+package de.basedefender.youtube.search;
 
-import de.basedefender.youtube.domain.BaseSearchImpl;
-import de.basedefender.youtube.domain.value.CommentThreadSearchImpl;
 import lombok.EqualsAndHashCode;
 import lombok.Value;
 
 @Value
 @EqualsAndHashCode
-public class CommentThreadsbyVideoSearch extends CommentThreadSearchImpl {
+public class CommentThreadsbyVideoSearch extends CommentThreadSearch {
   
   private final String part;
   private final String id;

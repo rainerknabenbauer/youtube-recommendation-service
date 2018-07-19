@@ -1,6 +1,4 @@
-package de.basedefender.youtube.domain;
-
-import de.basedefender.youtube.domain.value.ApiResponseStatus;
+package de.basedefender.youtube.api;
 
 public abstract class AbstractYoutubeApiError extends AbstractYoutubeApiResponse {
 

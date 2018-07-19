@@ -1,7 +1,5 @@
 package de.basedefender.youtube;
 
-import com.google.api.client.http.HttpRequest;
-import com.google.api.client.http.HttpRequestInitializer;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.services.youtube.YouTube;
@@ -9,7 +7,7 @@ import com.google.api.services.youtube.YouTubeRequest;
 import com.google.api.services.youtube.model.ResourceId;
 import com.google.api.services.youtube.model.SearchListResponse;
 import com.google.api.services.youtube.model.SearchResult;
-import de.basedefender.youtube.domain.SearchType;
+import de.basedefender.youtube.enums.SearchType;
 
 import java.io.BufferedReader;
 import java.io.IOException;

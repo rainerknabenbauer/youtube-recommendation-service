@@ -4,7 +4,7 @@ import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.services.youtube.YouTube;
 import com.google.api.services.youtube.model.ChannelListResponse;
-import de.basedefender.youtube.domain.value.search.PlaylistsByChannelSearch;
+import de.basedefender.youtube.search.PlaylistsByChannelSearch;
 
 public class PlaylistFromChannelApplication {
 

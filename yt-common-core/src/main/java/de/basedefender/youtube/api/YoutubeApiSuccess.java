@@ -1,7 +1,7 @@
-package de.basedefender.youtube.domain;
+package de.basedefender.youtube.api;
 
 import com.google.api.client.json.GenericJson;
-import de.basedefender.youtube.domain.value.ApiResponseStatus;
+import de.basedefender.youtube.enums.HttpStatusCode;
 
 /**
  * Youtube API Response Wrapper for our REST API.
