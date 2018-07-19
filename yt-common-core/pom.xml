@@ -29,10 +29,18 @@
 
         <lombokVersion>1.18.0</lombokVersion>
         <youtubeVersion>v3-rev204-1.23.0</youtubeVersion>
+        <googleApiClient>1.23.0</googleApiClient>
+        <springBeansVersion>5.0.7.RELEASE</springBeansVersion>
 
     </properties>
 
     <dependencies>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-beans</artifactId>
+            <version>${springBeansVersion}</version>
+        </dependency>
 
         <!-- Lombok -->
         <dependency>
@@ -42,11 +50,17 @@
             <scope>compile</scope>
         </dependency>
 
-        <!-- YouTube -->
+        <!-- Google / Youtube -->
         <dependency>
             <groupId>com.google.apis</groupId>
             <artifactId>google-api-services-youTube</artifactId>
             <version>${youtubeVersion}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.api-client</groupId>
+            <artifactId>google-api-client</artifactId>
+            <version>${googleApiClient}</version>
         </dependency>
 
     </dependencies>

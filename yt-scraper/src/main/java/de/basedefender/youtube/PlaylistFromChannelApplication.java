@@ -4,7 +4,7 @@ import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.services.youtube.YouTube;
 import com.google.api.services.youtube.model.ChannelListResponse;
-import de.basedefender.youtube.domain.value.PlaylistsByChannelSearchImpl;
+import de.basedefender.youtube.domain.value.search.PlaylistsByChannelSearch;
 
 public class PlaylistFromChannelApplication {
 
@@ -21,8 +21,8 @@ public class PlaylistFromChannelApplication {
 
     String channelId = "UCbcTU0KiCbjDEKttI9QjOPw";
 
-    PlaylistsByChannelSearchImpl playlistsByChannelSearch =
-        new PlaylistsByChannelSearchImpl(channelId, NUMBER_OF_VIDEOS_RETURNED);
+    PlaylistsByChannelSearch playlistsByChannelSearch =
+        new PlaylistsByChannelSearch(channelId, NUMBER_OF_VIDEOS_RETURNED);
 
     ChannelListResponse result = new YouTube.Builder(new NetHttpTransport(), new JacksonFactory(),
             request -> {
@@ -30,12 +30,12 @@ public class PlaylistFromChannelApplication {
             .build()
             .channels()
             .list(playlistsByChannelSearch.getPart())
-            .setId(playlistsByChannelSearch.getChannelId())  // Channel id
+            .setId(playlistsByChannelSearch.getId())  // Channel id
             .setKey(playlistsByChannelSearch.getApiKey())
             .setMaxResults(playlistsByChannelSearch.getMaxResults())
             .execute();
 
-    //System.out.println(PlaylistsByChannelSearchImpl.getPlaylistIds(result));
+    //System.out.println(PlaylistsByChannelSearch.getPlaylistIds(result));
   }
 
 }

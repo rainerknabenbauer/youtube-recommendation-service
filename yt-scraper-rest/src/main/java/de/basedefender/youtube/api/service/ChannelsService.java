@@ -9,7 +9,7 @@ import de.basedefender.youtube.YoutubeApiResponse;
 import de.basedefender.youtube.domain.*;
 import de.basedefender.youtube.domain.value.ApiKey;
 import de.basedefender.youtube.domain.value.ApiResponseStatus;
-import de.basedefender.youtube.domain.value.PlaylistsByChannelSearchImpl;
+import de.basedefender.youtube.domain.value.search.PlaylistsByChannelSearch;
 import de.basedefender.youtube.util.YoutubeApiResponseUtil;
 import org.springframework.stereotype.Service;
 
@@ -61,8 +61,8 @@ public class ChannelsService extends AbstractYouTubeService {
   }
   
   public YoutubeApiResponse getPlaylistsByChannel(String channelId) {
-    PlaylistsByChannelSearchImpl playlistSearch =
-        new PlaylistsByChannelSearchImpl(channelId, getNumberOfVideosReturned());
+    PlaylistsByChannelSearch playlistSearch =
+        new PlaylistsByChannelSearch(channelId, getNumberOfVideosReturned());
     
     return searchChannel(playlistSearch);
     
@@ -75,7 +75,7 @@ public class ChannelsService extends AbstractYouTubeService {
    * @param baseSearch Parameters for channel search
    * @return Extracted channel data
    */
-  private YoutubeApiResponse searchChannel(BaseSearchImpl baseSearch) {
+  private YoutubeApiResponse searchChannel(BaseSearch baseSearch) {
     
     ChannelListResponse result;
     
@@ -87,7 +87,7 @@ public class ChannelsService extends AbstractYouTubeService {
           .build()
           .channels()
           .list(baseSearch.getPart())
-          .setId(baseSearch.getChannelId())  // Channel id
+          .setId(baseSearch.getId())  // Channel id
           .setKey(baseSearch.getApiKey())
           .setMaxResults(baseSearch.getMaxResults())
           .execute();

@@ -1,4 +1,4 @@
-package de.basedefender.youtube.domain.value;
+package de.basedefender.youtube.domain.value.search;
 
 import de.basedefender.youtube.domain.PlaylistSearchImpl;
 import lombok.EqualsAndHashCode;
@@ -9,16 +9,17 @@ import lombok.Value;
  */
 @Value
 @EqualsAndHashCode
-public class PlaylistsByChannelSearchImpl extends PlaylistSearchImpl {
+public class PlaylistsByChannelSearch extends PlaylistSearchImpl {
 
   private final String part;
-  private final String channelId;
+  private final String id;
   private final Long maxResults;
 
-  public PlaylistsByChannelSearchImpl(String channelId, Long maxResults) {
+  public PlaylistsByChannelSearch(String id, Long maxResults) {
     this.part = "contentDetails";
-    this.channelId = channelId;
+    this.id = id;
     this.maxResults = maxResults;
   }
+  
 
 }
