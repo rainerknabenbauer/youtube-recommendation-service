@@ -31,7 +31,7 @@ public class ChannelsController {
     @ApiOperation(value = "Extract uploaded videos from a channel")
     @GetMapping("/{channelId}")
     public YoutubeApiResponse getVideosByChannelId(@PathVariable String channelId) {
-        return this.ytChannelService.searchVideos(channelId);
+        return this.ytChannelService.getVideosByChannel(channelId);
 
         //TODO check if video search is through channel and not regular search
     }

@@ -1,6 +1,7 @@
 package de.basedefender.youtube.domain;
 
 import com.google.api.services.youtube.YouTube;
+import de.basedefender.youtube.api.YoutubeApiResponse;
 import de.basedefender.youtube.value.ApiKey;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -17,15 +18,12 @@ public abstract class AbstractYouTubeService {
   @Getter
   @Value("${youtube.application.numberOfVideosReturned}")
   private Long numberOfVideosReturned;
-
-
-
+  
   public String getApiKey() {
     return this.apiKey.toString();
   }
   
-
-
+  
   //TODO String prettyPrint();
 
 

@@ -1,6 +1,6 @@
 package de.basedefender.youtube.search;
 
-import de.basedefender.youtube.domain.PlaylistSearchImpl;
+import de.basedefender.youtube.domain.PlaylistSearch;
 import lombok.EqualsAndHashCode;
 import lombok.Value;
 
@@ -9,7 +9,7 @@ import lombok.Value;
  */
 @Value
 @EqualsAndHashCode
-public class PlaylistsByChannelSearch extends PlaylistSearchImpl {
+public class PlaylistsByChannelSearch extends PlaylistSearch {
 
   private final String part;
   private final String id;

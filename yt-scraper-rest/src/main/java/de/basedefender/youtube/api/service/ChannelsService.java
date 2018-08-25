@@ -11,6 +11,7 @@ import de.basedefender.youtube.api.YoutubeApiSuccess;
 import de.basedefender.youtube.domain.*;
 import de.basedefender.youtube.enums.HttpStatusCode;
 import de.basedefender.youtube.enums.SearchType;
+import de.basedefender.youtube.search.VideosByChannelSearch;
 import de.basedefender.youtube.value.ApiKey;
 import de.basedefender.youtube.api.ApiResponseStatus;
 import de.basedefender.youtube.search.PlaylistsByChannelSearch;
@@ -27,49 +28,20 @@ public class ChannelsService extends AbstractYouTubeService {
     super(youTube, apiKey);
   }
   
-  //TODO getChannelQuery()
-  //TODO getVideoQuery()
-  public YoutubeApiResponse searchVideos(String channelId) {
-    
-    /**
-     * 1. Get channel information
-     * 2. Extract uploaded videos ID (playlist presumable)
-     * 3. ? search with ID ?
-     */
-    
-    YouTube.Search.List search;  //TODO switch search to channel instead of regular search
-    try {
-      search = super.getYouTube().search().list("id,snippet,contentDetails");
-    } catch (IOException ex) {
-      return YoutubeApiResponseUtil.getErrorResponse(HttpStatusCode.SERVICE_UNAVAILABLE,
-          "Failed while initializing search for YouTube.");
-    }
-    
-    search.setKey(super.getApiKey());
-    
-    search.setChannelId(channelId);
-    
-    // think about .setType()
-    search.setType(SearchType.VIDEO.toString());            //TODO what else to query
-    
-    search.setMaxResults(super.getNumberOfVideosReturned());
-    
-    try {
-      SearchListResponse searchListResponse = search.execute();
-      return new YoutubeApiSuccess(searchListResponse);
-    } catch (IOException ex) {
-      return YoutubeApiResponseUtil.getErrorResponse(HttpStatusCode.BAD_REQUEST,
-          "Failed while executing search on YouTube. Wrong search parameter? " +
-              "Check Channel ID.");
-    }
-  }
-  
   public YoutubeApiResponse getPlaylistsByChannel(String channelId) {
     PlaylistsByChannelSearch playlistSearch =
         new PlaylistsByChannelSearch(channelId, getNumberOfVideosReturned());
     
     return searchChannel(playlistSearch);
     
+  }
+  
+  /**
+   * Get videos of query channel.
+   * @return Videos by channel search
+   */
+  public YoutubeApiResponse getVideosByChannel(String channelId) {
+   return null;
   }
   
   
