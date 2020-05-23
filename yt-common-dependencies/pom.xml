@@ -7,7 +7,7 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.0.3.RELEASE</version>
-        <relativePath></relativePath>
+        <relativePath/>
     </parent>
 
     <packaging>pom</packaging>
@@ -22,7 +22,7 @@
 
         <youtubeVersion>v3-rev204-1.23.0</youtubeVersion>
         <googleApiClient>1.23.0</googleApiClient>
-        <swaggerVersion>2.8.0</swaggerVersion>
+        <swaggerVersion>2.9.2</swaggerVersion>
         <!-- later version requires lombok.anyConstructor.addConstructorProperties -->
         <lombokVersion>1.16.18</lombokVersion>
 
